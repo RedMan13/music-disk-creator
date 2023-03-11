@@ -22,6 +22,7 @@ const VLQParser = buffer => {
 }
 const parseChunk = (offset, buffer) => {
     const chunkType = buffer.subarray(offset, offset + 4).toString('ascii')
+    console.log(chunkType)
     switch (chunkType) {
     case 'MThd':
         // length always 6 but we get it and use it anyways
@@ -37,7 +38,7 @@ const parseChunk = (offset, buffer) => {
             format,
             ntrks,
             isMetric,
-            nextOffset: offset + length
+            nextOffset: offset + length + 8
         }
         if (isMetric) {
             const mainData = (division << 1) >> 1
